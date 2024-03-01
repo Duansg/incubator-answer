@@ -21,9 +21,11 @@ server:
 data:
   database:
     driver: "sqlite3"
-    connection: "/data/sqlite3/answer.db"
+#    connection: "/data/sqlite3/answer.db"
+    connection: "/Users/duansg/app/sqlite/answer.db"
   cache:
-    file_path: "/data/cache/cache.db"
+#    file_path: "/data/cache/cache.db"
+    file_path: "/Users/duansg/app/sqlite/cache/cache.db"
 i18n:
   bundle_dir: "/data/i18n"
 swaggerui:
