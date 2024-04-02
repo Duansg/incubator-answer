@@ -242,6 +242,7 @@ To run answer, use:
 		Short: "set some config to default value",
 		Long:  `set some config to default value`,
 		Run: func(_ *cobra.Command, _ []string) {
+			// dataDirPath将所有应用程序数据保存在此目录中。像配置文件，上传文件…
 			cli.FormatAllPath(dataDirPath)
 
 			c, err := conf.ReadConfig(cli.GetConfigFilePath())
