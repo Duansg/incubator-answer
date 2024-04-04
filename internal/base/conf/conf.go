@@ -65,6 +65,7 @@ func ReadConfig(configFilePath string) (c *AllConfig, err error) {
 		configFilePath = filepath.Join(cli.ConfigFileDir, cli.DefaultConfigFileName)
 	}
 	c = &AllConfig{}
+	// 通过viper构建yaml文件，并解析到AllConfig里面
 	config, err := viper.NewWithPath(configFilePath)
 	if err != nil {
 		return nil, err
