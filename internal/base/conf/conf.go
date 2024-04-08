@@ -70,6 +70,7 @@ func ReadConfig(configFilePath string) (c *AllConfig, err error) {
 	if err != nil {
 		return nil, err
 	}
+	// 通过Go语言结构体标签（Struct Tag）反射解析到AllConfig每一个属性中
 	if err = config.Parse(&c); err != nil {
 		return nil, err
 	}
