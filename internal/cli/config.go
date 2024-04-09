@@ -39,12 +39,14 @@ func SetDefaultConfig(dbConf *data.Database, cacheConf *data.CacheConf, field *C
 	if err != nil {
 		return err
 	}
+	// 延迟关闭
 	defer db.Close()
 
 	cache, cacheCleanup, err := data.NewCache(cacheConf)
 	if err != nil {
 		fmt.Println("new cache failed")
 	}
+	// 延迟刷新跟缓存清理
 	defer func() {
 		if cache != nil {
 			cache.Flush(context.Background())

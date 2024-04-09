@@ -245,6 +245,8 @@ To run answer, use:
 			// dataDirPath将所有应用程序数据保存在此目录中。像配置文件，上传文件…
 			cli.FormatAllPath(dataDirPath)
 
+			// cli.GetConfigFilePath()读取默认的config.yaml文件路径
+			// 读取配置文件
 			c, err := conf.ReadConfig(cli.GetConfigFilePath())
 			if err != nil {
 				fmt.Println("read config failed: ", err.Error())
@@ -252,6 +254,7 @@ To run answer, use:
 			}
 
 			field := &cli.ConfigField{}
+			// 判断是否含有-w allow_password_login命令，如果有说明设置需要密码登录=true
 			for _, f := range configFields {
 				switch f {
 				case "allow_password_login":
@@ -260,6 +263,7 @@ To run answer, use:
 					fmt.Printf("field %s not support\n", f)
 				}
 			}
+			// 设置默认的
 			err = cli.SetDefaultConfig(c.Data.Database, c.Data.Cache, field)
 			if err != nil {
 				fmt.Println("set default config failed: ", err.Error())
