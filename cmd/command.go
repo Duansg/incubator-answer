@@ -228,7 +228,9 @@ To run answer, use:
 		Short: "prints all plugins packed in the binary",
 		Long:  `prints all plugins packed in the binary`,
 		Run: func(_ *cobra.Command, _ []string) {
+			// 打印二进制文件中打包的所有插件
 			_ = plugin.CallBase(func(base plugin.Base) error {
+				fmt.Println("plugin 晓断")
 				info := base.Info()
 				fmt.Printf("%s[%s] made by %s\n", info.SlugName, info.Version, info.Author)
 				return nil
