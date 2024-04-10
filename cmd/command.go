@@ -209,6 +209,8 @@ To run answer, use:
 		Long:  `Build a new Answer with plugins that you need`,
 		Run: func(_ *cobra.Command, _ []string) {
 			fmt.Printf("try to build a new answer with plugins:\n%s\n", strings.Join(buildWithPlugins, "\n"))
+			// buildOutput：-- build -output[o]
+			// buildWithPlugins：-- build -with[w]
 			err := cli.BuildNewAnswer(buildOutput, buildWithPlugins, cli.OriginalAnswerInfo{
 				Version:  Version,
 				Revision: Revision,
