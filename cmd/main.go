@@ -61,8 +61,7 @@ var (
 // @in header
 // @name Authorization
 func Main() {
-	log.SetLogger(zap.NewLogger(
-		log.ParseLevel(logLevel), zap.WithName("answer"), zap.WithPath(logPath)))
+	log.SetLogger(zap.NewLogger(log.ParseLevel(logLevel), zap.WithName("answer"), zap.WithPath(logPath)))
 	Execute()
 }
 

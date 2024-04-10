@@ -27,5 +27,6 @@ import (
 // @in header
 // @name Authorization
 func main() {
+	// application entrance
 	answercmd.Main()
 }

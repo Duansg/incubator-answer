@@ -27,6 +27,10 @@ const i18nPath = path.resolve(__dirname, "../i18n");
 
 module.exports = {
   webpack: function(config, env) {
+    // config.output.path = path.resolve(
+    //   __dirname,
+    //   "./build"
+    // );
     addWebpackAlias({
       "@": path.resolve(__dirname, "src"),
       "@i18n": i18nPath
