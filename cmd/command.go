@@ -211,6 +211,7 @@ To run answer, use:
 			fmt.Printf("try to build a new answer with plugins:\n%s\n", strings.Join(buildWithPlugins, "\n"))
 			// buildOutput：-- build -output[o]
 			// buildWithPlugins：-- build -with[w]
+			//
 			err := cli.BuildNewAnswer(buildOutput, buildWithPlugins, cli.OriginalAnswerInfo{
 				Version:  Version,
 				Revision: Revision,
