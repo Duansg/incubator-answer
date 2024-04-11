@@ -103,6 +103,11 @@ type CallFn[T Base] func(fn Caller[T]) error
 // It returns a register function and a caller function
 // The register function is used to register a plugin, it will be called in the plugin's init function
 // The caller function is used to call all registered plugins
+// MakePlugin创建一个插件调用者和寄存器堆栈管理器
+// 参数super表示是否可以禁用插件。
+// 返回一个寄存器函数和一个调用函数
+// register函数用于注册一个插件，它将在插件的init函数中被调用
+// 调用函数用于调用所有已注册的插件
 func MakePlugin[T Base](super bool) (CallFn[T], RegisterFn[T]) {
 	stack := Stack[T]{}
 

@@ -109,14 +109,20 @@ func newAnswerBuilder(outputPath string, plugins []string, originalAnswerInfo Or
 	}
 }
 
+/*
+ * func 是Go语言中定义函数或方法的关键字。
+ * (a *answerBuilder) 是方法的接收者部分，它定义了方法与哪个类型的实例关联。在这个例子中，a是一个指针，指向answerBuilder类型的一个实例。这意味着方法可以操作answerBuilder实例的内部状态，即使方法本身并不需要修改它。
+ */
 func (a *answerBuilder) DoTask(task func(b *buildingMaterial) error) {
 	if a.BuildError != nil {
 		return
 	}
+	// 将answerBuilder[a]中的buildingMaterial传入到入参的task的形参中
 	a.BuildError = task(a.buildingMaterial)
 }
 
 // BuildNewAnswer builds a new answer with specified plugins
+// 用指定的插件构建一个新的answer
 func BuildNewAnswer(outputPath string, plugins []string, originalAnswerInfo OriginalAnswerInfo) (err error) {
 	builder := newAnswerBuilder(outputPath, plugins, originalAnswerInfo)
 	builder.DoTask(createMainGoFile)
