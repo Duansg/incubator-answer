@@ -173,26 +173,28 @@ To run answer, use:
 		Short: "checking the required environment",
 		Long:  `Check if the current environment meets the startup requirements`,
 		Run: func(_ *cobra.Command, _ []string) {
+			// dataDirPath将所有应用程序数据保存在此目录中。像配置文件，上传文件…
 			cli.FormatAllPath(dataDirPath)
 			fmt.Println("Start checking the required environment...")
+			// 检查配置文件
 			if cli.CheckConfigFile(cli.GetConfigFilePath()) {
 				fmt.Println("config file exists [✔]")
 			} else {
 				fmt.Println("config file not exists [x]")
 			}
-
+			// 检查上传文件
 			if cli.CheckUploadDir() {
 				fmt.Println("upload directory exists [✔]")
 			} else {
 				fmt.Println("upload directory not exists [x]")
 			}
-
+			// 读取配置文件
 			c, err := conf.ReadConfig(cli.GetConfigFilePath())
 			if err != nil {
 				fmt.Println("read config failed: ", err.Error())
 				return
 			}
-
+			//  获取DB的链接，检测连通性
 			if cli.CheckDBConnection(c.Data.Database) {
 				fmt.Println("db connection successfully [✔]")
 			} else {
