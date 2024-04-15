@@ -30,15 +30,20 @@ import (
 
 // DumpAllData dump all database data to sql
 func DumpAllData(dataConf *data.Database, dumpDataPath string) error {
+	// 新增数据库连接
 	db, err := data.NewDB(false, dataConf)
 	if err != nil {
 		return err
 	}
+	// 延迟关闭
 	defer db.Close()
+	// 心跳一下
 	if err = db.Ping(); err != nil {
 		return err
 	}
 
+	// 格式化dump的文件路径+文件名
 	name := filepath.Join(dumpDataPath, fmt.Sprintf("answer_dump_data_%s.sql", time.Now().Format("2006-01-02")))
+	// dump sql
 	return db.DumpAllToFile(name, schemas.MYSQL)
 }

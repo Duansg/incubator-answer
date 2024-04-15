@@ -54,6 +54,7 @@ func NewData(db *xorm.Engine, cache cache.Cache) (*Data, func(), error) {
 
 // NewDB new database instance
 func NewDB(debug bool, dataConf *Database) (*xorm.Engine, error) {
+	// 默认驱动为mysql
 	if dataConf.Driver == "" {
 		dataConf.Driver = string(schemas.MYSQL)
 	}
@@ -66,11 +67,13 @@ func NewDB(debug bool, dataConf *Database) (*xorm.Engine, error) {
 		}
 		dataConf.MaxOpenConn = 1
 	}
+	// 使用xorm获取数据库链接
 	engine, err := xorm.NewEngine(dataConf.Driver, dataConf.Connection)
 	if err != nil {
 		return nil, err
 	}
 
+	// 设置配置
 	if debug {
 		engine.ShowSQL(true)
 	} else {

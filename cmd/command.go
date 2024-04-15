@@ -152,12 +152,16 @@ To run answer, use:
 		Long:  `back up data`,
 		Run: func(_ *cobra.Command, _ []string) {
 			fmt.Println("Answer is backing up data")
+			// 	dataDirPath将所有应用程序数据保存在此目录中。像配置文件，上传文件…
 			cli.FormatAllPath(dataDirPath)
+			// 读取配置
 			c, err := conf.ReadConfig(cli.GetConfigFilePath())
 			if err != nil {
 				fmt.Println("read config failed: ", err.Error())
 				return
 			}
+			// dumpDataPath: dump --path ，dump输出路径
+			//
 			err = cli.DumpAllData(c.Data.Database, dumpDataPath)
 			if err != nil {
 				fmt.Println("dump failed: ", err.Error())
